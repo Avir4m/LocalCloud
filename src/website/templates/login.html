@@ -1,0 +1,24 @@
+{% extends "base.html"%}
+
+{% block content %}
+<form method="POST" enctype="multipart/form-data">
+  <div class="card">
+    <div class="card-header">
+      <h1 class="card-title">Login</h1>
+    </div>
+    <div class="card-body">
+      <div class="mb-3">
+        <label for="username" class="form-label">Username</label>
+        <input type="username" class="form-control" id="username" name="username" placeholder="Username">
+      </div>
+      <div class="mb-3">
+        <label for="password" class="form-label">Password</label>
+        <input type="password" class="form-control" id="password" name="password" placeholder="Password">
+        <small><a class="link" href="{{ url_for('auth.forgot_password') }}">Forgot Password</a></small>
+      </div>
+      <button type="submit" class="btn btn-primary mb-3">Login</button>
+      <small><p>Need an account? <a href="{{ url_for('auth.sign_up') }}">Sign Up</a></p></small>
+    </div>
+  </div>
+</form>
+{% endblock %}
