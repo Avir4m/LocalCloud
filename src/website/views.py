@@ -1,9 +1,13 @@
-from flask import Blueprint, render_template, abort, redirect
+from flask import Blueprint, render_template
 
 
 views = Blueprint('views', __name__)
 
 
-@views.route('')
+@views.route('/')
 def index():
     return render_template('index.html')
+
+@views.route('/upload/')
+def upload():
+    return render_template('upload.html')
