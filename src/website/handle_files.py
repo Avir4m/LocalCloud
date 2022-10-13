@@ -3,7 +3,7 @@ from werkzeug.utils import secure_filename
 import os
 
 
-def handle_file(f):
+def upload_file(f):
     print(f.filename)
     if f.filename == '':
                 flash('No selected file', category='error')

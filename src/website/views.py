@@ -1,6 +1,6 @@
-from flask import Blueprint, render_template, flash, request, current_app, redirect
+from flask import Blueprint, render_template, flash, request, redirect
 
-from .handle_file import handle_file
+from .handle_files import upload_file
 
 views = Blueprint('views', __name__)
 
@@ -16,7 +16,7 @@ def upload():
         files = request.files.getlist("file[]")
 
         for file in files:
-            handle_file(file)
+            upload_file(file)
 
         flash('Uploaded file(s) successfully', category='success')
         return redirect(request.url)
