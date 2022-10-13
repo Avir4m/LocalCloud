@@ -1,5 +1,6 @@
-from flask import Blueprint, render_template
+from flask import Blueprint, render_template, flash, request, current_app, redirect
 
+from .handle_file import handle_file
 
 views = Blueprint('views', __name__)
 
@@ -8,6 +9,17 @@ views = Blueprint('views', __name__)
 def index():
     return render_template('index.html')
 
-@views.route('/upload/')
+@views.route('/upload/', methods=['POST', 'GET'])
 def upload():
-    return render_template('upload.html')
+    if request.method == 'POST':
+
+        files = request.files.getlist("file[]")
+
+        for file in files:
+            handle_file(file)
+
+        flash('Uploaded file(s) successfully', category='success')
+        return redirect(request.url)
+
+    else:
+        return render_template('upload.html')

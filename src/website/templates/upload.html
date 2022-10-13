@@ -1,4 +1,11 @@
 {% extends "base.html"%}
 
 {% block content %}
+<form method=post enctype=multipart/form-data>
+    <div class="mb-3">
+        <label for="formFile" class="form-label">What file(s) would you like to upload?</label>
+        <input class="form-control" type="file" id="formFile" name="file[]" multiple>
+      </div>
+      <button type="submit" class="btn btn-primary mb-3">Upload</button>
+</form>
 {% endblock %}
