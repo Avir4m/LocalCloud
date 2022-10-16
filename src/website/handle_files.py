@@ -14,8 +14,6 @@ def upload_file(f):
     Upload it and it in database.
     '''
 
-    print(os.getcwd() + current_app.config['UPLOAD_FOLDER'])
-
     if f.filename == '':
         flash('No selected file', category='error')
         return redirect(request.url)
