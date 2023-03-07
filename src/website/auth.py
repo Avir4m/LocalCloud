@@ -27,7 +27,7 @@ def login():
             flash('Invalid password or email address, Please try again.', category='error')
         else:
             flash('Logged in successfully!', category='success')
-            login_user(user)
+            login_user(user, remember=True)
             return redirect(url_for('views.index'))
         
     return render_template('login.html', user=current_user)
@@ -60,7 +60,7 @@ def sign_up():
             db.session.add(new_user)
             db.session.commit()
 
-            login_user(new_user, remember=False)
+            login_user(new_user, remember=True)
             flash('Account created!', category='success')
             return redirect(url_for('views.index'))
         

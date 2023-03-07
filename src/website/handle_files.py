@@ -18,10 +18,9 @@ def upload_file(f):
         flash('No selected file', category='error')
         return redirect(request.url)
 
-    
+    _, file_extension = os.path.splitext(f.filename)
     filename = secure_filename(f.filename)
     f.save(os.path.join(os.getcwd() + current_app.config['UPLOAD_FOLDER'] + filename))
-
-    file = File(file_name=filename, uploader=current_user.id)
+    file = File(file_name=filename, uploader=current_user.id, type=file_extension)
     db.session.add(file)
     db.session.commit()

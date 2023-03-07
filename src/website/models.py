@@ -13,5 +13,6 @@ class User(db.Model, UserMixin):
 class File(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     file_name = db.Column(db.String)
+    type = db.Column(db.String)
     date_uploaded = db.Column(db.DateTime(timezone=True), default=func.now())
     uploader = db.Column(db.Integer, db.ForeignKey('user.id', ondelete="CASCADE"), nullable=False)
