@@ -20,7 +20,10 @@ def upload_file(f):
 
     _, file_extension = os.path.splitext(f.filename)
     filename = secure_filename(f.filename)
-    f.save(os.path.join(os.getcwd() + current_app.config['UPLOAD_FOLDER'] + filename))
+    path = os.path.join(os.getcwd() + current_app.config['UPLOAD_FOLDER'] + current_user.username + "/")
+    if not os.path.exists(path):
+        os.makedirs(path)
+    f.save(os.path.join(path + filename))
     file = File(file_name=filename, uploader=current_user.id, type=file_extension)
     db.session.add(file)
     db.session.commit()
