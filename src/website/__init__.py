@@ -3,15 +3,11 @@ from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from flask_login import LoginManager
 
-
-
 db = SQLAlchemy()
-
 
 SECRET_KEY = "SECRET_KEY"
 DB_NAME = "database.db"
 UPLOAD_FOLDER = '/src/website/static/uploads/'
-
 
 def create_app():
     app = Flask(__name__)
