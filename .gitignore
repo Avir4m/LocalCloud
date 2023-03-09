@@ -5,6 +5,10 @@ __pycache__/
 
 # Database
 *.db
+instance/
 
 # Virtual environment
 .venv
+
+# Uploads
+uploads/
