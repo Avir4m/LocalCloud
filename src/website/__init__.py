@@ -7,7 +7,7 @@ db = SQLAlchemy()
 
 SECRET_KEY = "SECRET_KEY"
 DB_NAME = "database.db"
-UPLOAD_FOLDER = '/src/website/static/uploads/'
+UPLOAD_FOLDER = '/src/website/uploads/'
 
 def create_app():
     app = Flask(__name__)
@@ -15,6 +15,8 @@ def create_app():
     app.config['SECRET_KEY'] = SECRET_KEY
     app.config['SQLALCHEMY_DATABASE_URI'] = f'sqlite:///{DB_NAME}'
     app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+    app.config['TESTING'] = False
+    app.config['LOGIN_DISABLED'] = False
     db.init_app(app)
     
 
