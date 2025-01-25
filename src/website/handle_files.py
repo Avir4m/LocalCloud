@@ -27,3 +27,16 @@ def upload_file(f):
     file = File(file_name=filename, uploader=current_user.id, type=file_extension)
     db.session.add(file)
     db.session.commit()
+
+
+def delete_file(file_id):
+
+    '''
+    Delete file from database and from disk.
+    '''
+
+    file = File.query.filter_by(id=file_id).first()
+    path = os.path.join(os.getcwd() + current_app.config['UPLOAD_FOLDER'] + current_user.username + "/")
+    os.remove(os.path.join(path + file.file_name))
+    db.session.delete(file)
+    db.session.commit()

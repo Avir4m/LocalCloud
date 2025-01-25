@@ -2,7 +2,7 @@ import os
 from flask import Blueprint, abort, current_app, render_template, flash, request, redirect, send_file, url_for
 from flask_login import login_required, current_user
 
-from .handle_files import upload_file
+from .handle_files import upload_file, delete_file
 from .models import File
 
 views = Blueprint('views', __name__)
@@ -46,5 +46,15 @@ def preview(file_id):
     if current_user.id == file.user.id:
         path = os.path.join(os.getcwd() + current_app.config['UPLOAD_FOLDER'] + current_user.username + "/" + file.file_name)
         return send_file(path)
+    else:
+        abort(403)
+
+@views.route('/delete/<file_id>')
+@login_required
+def delete(file_id):
+    file = File.query.filter_by(id=file_id).first()
+    if current_user.id == file.user.id:
+        delete_file(file_id)
+        return redirect(url_for('views.myfiles'))
     else:
         abort(403)
